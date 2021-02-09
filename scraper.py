@@ -14,4 +14,13 @@ def extract_wwr():
     li = article.find("ul").find_all("li")
     for items in li:
         company = items.find("span", class_="company")
-        print(company)
+        up_time = items.find("span", class_="featured")
+        location = items.find("span", class_="region")
+        if(company and up_time):
+            jobs = {
+                "company": company.string,
+                "upTime": up_time.string,
+                "location": location.string
+            }
+        wwr_jobs.append(jobs)
+    return wwr_jobs
