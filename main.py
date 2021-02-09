@@ -1,5 +1,5 @@
 from scraper import extract_wwr
 
-wwr_jobs = extract_wwr()
+extract_wwr()
 
-print(wwr_jobs)
+# print(wwr_jobs)
