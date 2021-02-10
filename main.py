@@ -1,5 +1,6 @@
-from scraper import extract_wwr
+from wwr import extract_wwr
+from remoteok import extract_remoteok
 
-extract_wwr()
+wwr_result = extract_wwr()
 
-# print(wwr_jobs)
+extract_remoteok()

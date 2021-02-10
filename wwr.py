@@ -3,10 +3,13 @@ from bs4 import BeautifulSoup
 
 wwr_url = "https://weworkremotely.com/remote-jobs/search?term=python"
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
+
 
 def extract_wwr():
     wwr_jobs = []
-    r = requests.get(wwr_url)
+    r = requests.get(wwr_url, headers=headers)
     html = BeautifulSoup(r.text, "html.parser")
     section = html.find(
         "div", class_="jobs-container").find("section", class_="jobs")
