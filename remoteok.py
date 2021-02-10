@@ -12,7 +12,13 @@ def extract_remoteok():
     html = BeautifulSoup(r.text, "html.parser")
     table = html.find("table")
     tr = table.find_all("tr", class_="job")
-    print(tr)
+    for items in tr:
+        location = items.find("div", class_="location")
+        if(location):
+            location = location.string
+        else:
+            location = "None"
+        print(location)
 
 
 extract_remoteok()
