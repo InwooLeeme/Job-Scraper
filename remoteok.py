@@ -14,11 +14,13 @@ def extract_remoteok():
     tr = table.find_all("tr", class_="job")
     for items in tr:
         location = items.find("div", class_="location")
+        apply_link = items.find("a", class_="companyLink").get('href')
+        title = items.find("a", class_="companyLink").find("h3").string
         if(location):
             location = location.string
         else:
             location = "None"
-        print(location)
+        print(title)
 
 
 extract_remoteok()
