@@ -8,19 +8,27 @@ headers = {
 
 
 def extract_remoteok():
+    remoteok_jobs = []
     r = requests.get(remoteok_url, headers=headers)
     html = BeautifulSoup(r.text, "html.parser")
     table = html.find("table")
     tr = table.find_all("tr", class_="job")
     for items in tr:
         location = items.find("div", class_="location")
-        apply_link = items.find("a", class_="companyLink").get('href')
-        title = items.find("a", class_="companyLink").find("h3").string
+        company = items.find("h3", {"itemprop": "name"})
+        apply_link = items.find("a", class_="companyLink")
+        title = items.find("a", class_="companyLink").find("h3")
+        up_time = items.find("time")
         if(location):
             location = location.string
         else:
             location = "None"
-        print(title)
-
-
-extract_remoteok()
+        remote_dict = {
+            "title": title.string,
+            "company": company.string,
+            "location": location,
+            "apply_link": f"https://remoteok.io{apply_link.get('href')}",
+            "upTime": up_time.string
+        }
+        remoteok_jobs.append(remote_dict)
+    return remoteok_jobs
