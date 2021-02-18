@@ -25,5 +25,5 @@ def extract_wwr():
                 "upTime": up_time.string,
                 "location": location.string
             }
-        wwr_jobs.append(jobs)
+            wwr_jobs.append(jobs)
     return wwr_jobs

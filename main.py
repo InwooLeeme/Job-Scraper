@@ -5,6 +5,4 @@ wwr_result = extract_wwr()
 
 remoteok_result = extract_remoteok()
 
-# extract_remoteok()
-
 print(remoteok_result)
