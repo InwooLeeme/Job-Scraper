@@ -19,14 +19,16 @@ def get_last_page():
 def extract_stack():
     page_list = get_last_page()
     jobs = []
-    r = requests.get(stackover_url)
-    html = BeautifulSoup(r.text, "html.parser")
-    table = html.find("div", class_="js-search-results")
-    job_table = table.find("div", class_="grid--cell")
-    search_result = job_table.find_all("div", class_="-job")
-    for each_job in search_result:
-        apply_link = each_job.find("a", class_="s-link")
-        print(apply_link)
+    for pages in page_list:
+        url = f"https://stackoverflow.com/jobs?q=python&pg={pages}"
+        r = requests.get(url)
+        html = BeautifulSoup(r.text, "html.parser")
+        table = html.find("div", class_="js-search-results")
+        job_table = table.find("div", class_="grid--cell")
+        search_result = job_table.find_all("div", class_="-job")
+        for each_job in search_result:
+            apply_link = each_job.find("a", class_="s-link").get('href')
+            print(apply_link)
 
 
 extract_stack()
