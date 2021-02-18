@@ -28,7 +28,15 @@ def extract_stack():
         search_result = job_table.find_all("div", class_="-job")
         for each_job in search_result:
             apply_link = each_job.find("a", class_="s-link").get('href')
-            print(apply_link)
+            title = each_job.find("a", class_="s-link").string
+            up_time = each_job.find("ul", class_="mt4").find(
+                "li").find("span", class_="")
+            if(up_time is None):
+                up_time = None
+                continue
+            else:
+                up_time = up_time.string
+            print(up_time)
 
 
 extract_stack()
