@@ -2,6 +2,7 @@ from wwr import extract_wwr
 from remoteok import extract_remoteok
 from stackover import extract_stackover
 from flask import Flask, render_template, redirect
+import os
 
 app = Flask("JobScrper")
 
@@ -13,7 +14,7 @@ stackover_result = extract_stackover()
 
 jobs = wwr_result + remoteok_result + stackover_result
 
-# print(jobs)
+port = int(os.environ.get('PORT', 5000))
 
 
 @app.route("/")
@@ -26,4 +27,4 @@ def detail():
     return render_template("detail.html", jobs=jobs)
 
 
-app.run(host="localhost")
+app.run(host="0.0.0.0", port=port)
