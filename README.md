@@ -15,3 +15,4 @@ Scrapping the Jobs when user want to search.
 - [x] Extract the jobs title,company,upload time and language icon in stackoverflow site.
 - [x] Host main page in local server.
 - [x] Send extract data to the template.
+- [ ] Upload Heroku.
