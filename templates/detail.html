@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Result</title>
+  </head>
+  <style>
+    
+  </style>
+  <body>
+    {% for index in jobs %}
+      <div class="search__result">
+        <a href="{{index["applyLink"]}}">
+          <span>{{index["title"]}}</span>
+        </a>
+        <span>{{index["company"]}}</span>
+        <span>{{index["upTime"]}}</span>
+      </div>
+    {% endfor %}
+  </body>
+</html>
