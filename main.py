@@ -27,4 +27,4 @@ def detail():
     return render_template("detail.html", jobs=jobs)
 
 
-app.run(host="0.0.0.0", port=port)
+app.run(host="0.0.0.0", port=port, debug=True)
