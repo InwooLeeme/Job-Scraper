@@ -4,7 +4,7 @@ from stackover import extract_stackover
 from flask import Flask, render_template, redirect
 import os
 
-app = Flask("JobScrper")
+app = Flask(__name__)
 
 wwr_result = extract_wwr()
 
@@ -14,7 +14,7 @@ stackover_result = extract_stackover()
 
 jobs = wwr_result + remoteok_result + stackover_result
 
-port = int(os.environ.get('PORT', 5000))
+port = int(os.environ.get('PORT', 5001))
 
 
 @app.route("/")
@@ -27,4 +27,5 @@ def detail():
     return render_template("detail.html", jobs=jobs)
 
 
-app.run(host="0.0.0.0", port=port, debug=True)
+if __name__ == "__main__":
+    app.run(host="localhost", port=port, debug=True)
